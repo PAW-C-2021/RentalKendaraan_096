@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using RentalKendaraan.Models;
 
@@ -19,9 +20,22 @@ namespace RentalKendaraan.Controllers
         }
 
         // GET: JenisKendaraans
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string ktsd, string searchString, string sortOrder, string currentFilter, int? pageNumber)
         {
-            return View(await _context.JenisKendaraans.ToListAsync());
+            var ktsdList = new List<string>();
+            var ktsdQuery = from d in _context.JenisKendaraans orderby d.NamaJenisKendaraan select d.NamaJenisKendaraan;
+            ktsdList.AddRange(ktsdQuery.Distinct());
+            ViewBag.ktsd = new SelectList(ktsdList);
+            var menu = from m in _context.JenisKendaraans select m;
+            if (!string.IsNullOrEmpty(ktsd))
+            {
+                menu = menu.Where(x => x.NamaJenisKendaraan == ktsd);
+            }
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                menu = menu.Where(s => s.NamaJenisKendaraan.Contains(searchString));
+            }
+            return View(await menu.ToListAsync());
         }
 
         // GET: JenisKendaraans/Details/5

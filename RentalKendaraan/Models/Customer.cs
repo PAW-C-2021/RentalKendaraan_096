@@ -19,7 +19,7 @@ namespace RentalKendaraan.Models
         [Required(ErrorMessage = "Nama Customer tidak boleh kosong")]
         public string NamaCustomer { get; set; }
 
-        [RegularExpression("^[0-9]*$", ErrorMessage = "NIK Hanya boleh di isi dengan angka")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "NIK Hanya Boleh Diisi dengan angka")]
         public string Nik { get; set; }
 
         [Required(ErrorMessage = "Alamat Wajib Di isi")]
@@ -30,9 +30,11 @@ namespace RentalKendaraan.Models
         [RegularExpression("^[0-9]*$", ErrorMessage = "No hp hanya boleh di isi dengan angka")]
         [Required(ErrorMessage = "No hp wajib di isi")]
         public string NoHp { get; set; }
+
         public int? IdGender { get; set; }
 
         public virtual Gender IdGenderNavigation { get; set; }
         public virtual ICollection<Peminjaman> Peminjamen { get; set; }
+        public object NamaCustomers { get; internal set; }
     }
 }

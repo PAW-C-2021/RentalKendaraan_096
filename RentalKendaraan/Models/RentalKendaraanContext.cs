@@ -25,6 +25,7 @@ namespace RentalKendaraan.Models
         public virtual DbSet<KondisiKendaraan> KondisiKendaraans { get; set; }
         public virtual DbSet<Peminjaman> Peminjamen { get; set; }
         public virtual DbSet<Pengembalian> Pengembalians { get; set; }
+        public object Customer { get; internal set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
