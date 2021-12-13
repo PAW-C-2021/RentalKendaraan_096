@@ -20,6 +20,5 @@ namespace RentalKendaraan.Models
         public string NamaJenisKendaraan { get; set; }
 
         public virtual ICollection<Kendaraan> Kendaraans { get; set; }
-        public object IdJenisKendaraanNavigation { get; internal set; }
     }
 }

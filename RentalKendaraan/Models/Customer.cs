@@ -35,6 +35,5 @@ namespace RentalKendaraan.Models
 
         public virtual Gender IdGenderNavigation { get; set; }
         public virtual ICollection<Peminjaman> Peminjamen { get; set; }
-        public object NamaCustomers { get; internal set; }
     }
 }
