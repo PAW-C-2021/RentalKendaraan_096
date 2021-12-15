@@ -52,7 +52,7 @@ namespace RentalKendaraan.Controllers
         [HttpPost]
         public async Task<IActionResult> UploadFileViaModel(FileInputModel model)
         {
-            if (model == null || model.FileToUpload.Length == 0)
+            if (model == null || model.FileToUpload == null || model.FileToUpload.Length == 0)
                 return Content("file not selected");
             var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", model.FileToUpload.GetFilename());
             using (var stream = new FileStream(path, FileMode.Create))
